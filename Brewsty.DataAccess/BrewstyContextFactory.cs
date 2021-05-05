@@ -10,7 +10,7 @@ namespace Brewsty.DataAccess
         public static BrewstyContext Create(string connectionString)
         {
             var optionsBuilder = new DbContextOptionsBuilder<BrewstyContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseMySQL(connectionString);
 
             // Ensure that the SQLite database and sechema is created!
             var context = new BrewstyContext(optionsBuilder.Options);

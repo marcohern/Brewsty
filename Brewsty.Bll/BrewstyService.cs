@@ -10,7 +10,7 @@ namespace Brewsty.Bll
     {
         public Beer Beer { get; set; }
 
-        private UnitOfWork uow;
+        private BrewstyUnitOfWork uow;
 
         public void Create(Beer beer)
         {
