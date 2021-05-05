@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Brewsty.DataAccess
 {
-    public class BrewstyUnitOfWork
+    public class BrewstyUnitOfWork : IUnitOfWork
     {
         private readonly BrewstyContext _context;
 

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Brewsty.Entities
 {
-    public class Beer
+    public class Beer: Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Tagline { get; set; }
         public DateTime FirstBrewed { get; set; }
@@ -24,7 +23,7 @@ namespace Brewsty.Entities
         public UnitValue BoilVolume { get; set; }
         public Method Method { get; set; }
         public Ingredients Ingredients { get; set; }
-        public List<string> FoodPairing { get; set; }
+        public List<FoodDescription> FoodPairing { get; set; }
         public string BrewerTips { get; set; }
         public string ContributedBy { get; set; }
     }

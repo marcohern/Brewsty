@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Brewsty.Entities
 {
-    public class UnitValue
+    public class UnitValue : Entity
     {
         public Unit Unit { get; set; }
         public float Value { get; set; }
