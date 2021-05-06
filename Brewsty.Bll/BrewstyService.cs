@@ -7,10 +7,10 @@ using System.Text;
 
 namespace Brewsty.Bll
 {
-    public class BrewstyService
+    public class BrewstyService : IBrewstyService
     {
-        private BrewstyContext _context;
-        public BrewstyService(BrewstyContext context)
+        private IBrewstyContext _context;
+        public BrewstyService(IBrewstyContext context)
         {
             this._context = context;
         }

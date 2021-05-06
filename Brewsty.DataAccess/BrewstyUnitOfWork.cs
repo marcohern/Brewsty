@@ -6,9 +6,9 @@ namespace Brewsty.DataAccess
 {
     public class BrewstyUnitOfWork : IUnitOfWork
     {
-        private readonly BrewstyContext _context;
+        private readonly IBrewstyContext _context;
 
-        public BrewstyUnitOfWork(BrewstyContext context)
+        public BrewstyUnitOfWork(IBrewstyContext context)
         {
             this._context = context;
         }

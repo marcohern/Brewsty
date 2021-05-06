@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.Extensions.Logging;
+using Brewsty.Bll;
+using Brewsty.PunkAPI;
 
 namespace Brewsty
 {
@@ -29,6 +31,9 @@ namespace Brewsty
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IPunkAPI, PunkAPI.PunkAPI>();
+            services.AddScoped<IBrewstyContext, BrewstyContext>();
+            services.AddScoped<IBrewstyService, BrewstyService>();
             services.AddControllers();
 
             var builder = new ConfigurationBuilder()

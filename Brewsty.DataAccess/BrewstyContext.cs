@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Brewsty.DataAccess
 {
-    public class BrewstyContext : DbContext
+    public class BrewstyContext : DbContext, IBrewstyContext
     {
         public BrewstyContext(DbContextOptions<BrewstyContext> options) : base(options) { }
         public virtual DbSet<Beer> Beers { get; set; }

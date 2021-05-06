@@ -13,11 +13,17 @@ namespace Brewsty.Controllers
     [ApiController]
     public class BrewstyController : ControllerBase
     {
+        IPunkAPI api;
+        
+        public BrewstyController(IPunkAPI api)
+        {
+            this.api = api;
+        }
+
         [HttpGet]
         [Route("{id}")]
         public async Task<Beer> GetBeer(int id)
         {
-            var api = new PunkAPI.PunkAPI(new HttpClient());
             return await api.Get(id);
         }
         [HttpGet]
@@ -25,9 +31,9 @@ namespace Brewsty.Controllers
         public async Task<Entities.Beer> ImportBeer(int id)
         {
             BeerCastOptions options = BeerCastOptions.FromQueryString(Request.QueryString.Value);
-            var api = new PunkAPI.PunkAPI(new HttpClient());
             var punkyBeer = await api.Get(id);
             var beer = Beer.FromPunky(punkyBeer, options);
+
             return beer;
         }
 
@@ -35,7 +41,6 @@ namespace Brewsty.Controllers
         [Route("find")]
         public async Task<List<Beer>> FindBeer()
         {
-            var api = new PunkAPI.PunkAPI(new HttpClient());
             return await api.Query(new Query { beer_name = "Brew" });
         }
     }
