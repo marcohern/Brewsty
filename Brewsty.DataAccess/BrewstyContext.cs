@@ -30,9 +30,9 @@ namespace Brewsty.DataAccess
                 FirstBrewed = new DateTime(2007, 4, 1),
                 ContributedBy = "John Doe",
                 VolumeValue = 0.0f,
-                VolumeUnit = Unit.Liters,
+                VolumeUnit = Unit.litres,
                 BoilVolumeValue = 0.0f,
-                BoilVolumeUnit = Unit.Liters,
+                BoilVolumeUnit = Unit.litres,
                 BrewerTips = "",
             };
             List<FoodDescription> foodDescription = new List<FoodDescription>
@@ -47,11 +47,11 @@ namespace Brewsty.DataAccess
             };
             List<Malt> malt = new List<Malt>
             {
-                new Malt { Id=Guid.NewGuid().ToString(), IngredientId=ingredients.Id, Name = "Derp", AmountValue=0.0f, AmountUnit=Unit.Grams }
+                new Malt { Id=Guid.NewGuid().ToString(), IngredientId=ingredients.Id, Name = "Derp", AmountValue=0.0f, AmountUnit=Unit.grams }
             };
             List<Hop> hops = new List<Hop>
             {
-                new Hop { Id=Guid.NewGuid().ToString(), IngredientId=ingredients.Id, Name="Dorp", AmountValue = 0.0f, AmountUnit=Unit.Grams, Add="start", Attribute="glitter" }
+                new Hop { Id=Guid.NewGuid().ToString(), IngredientId=ingredients.Id, Name="Dorp", AmountValue = 0.0f, AmountUnit=Unit.grams, Add="start", Attribute="glitter" }
             };
             Method method = new Method
             {
@@ -61,9 +61,9 @@ namespace Brewsty.DataAccess
             };
             List<TempDuration> tempDuration = new List<TempDuration>
             {
-                new TempDuration{Id=Guid.NewGuid().ToString(), MethodId=method.Id, Duration=4, TempValue=1.0f, TempUnit = Unit.Celcius}
+                new TempDuration{Id=Guid.NewGuid().ToString(), MethodId=method.Id, Duration=4, TempValue=1.0f, TempUnit = Unit.celsius}
             };
-            Fermentation fermentation = new Fermentation { Id = Guid.NewGuid().ToString(), MethodId = method.Id, TempValue = 3.0f, TempUnit = Unit.Celcius };
+            Fermentation fermentation = new Fermentation { Id = Guid.NewGuid().ToString(), MethodId = method.Id, TempValue = 3.0f, TempUnit = Unit.celsius };
 
             modelBuilder.Entity<Beer>().HasData(new[] { beer });
             modelBuilder.Entity<FoodDescription>().HasData(foodDescription);

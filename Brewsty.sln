@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brewsty.DataAccess", "Brews
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A31F8C08-4805-4904-AC8B-7B994CE0846B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brewsty.PunkAPI", "..\Brewsty.PunkAPI\Brewsty.PunkAPI.csproj", "{046B27CE-F282-4277-B36D-CEA947A9A70F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A31F8C08-4805-4904-AC8B-7B994CE0846B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A31F8C08-4805-4904-AC8B-7B994CE0846B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A31F8C08-4805-4904-AC8B-7B994CE0846B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046B27CE-F282-4277-B36D-CEA947A9A70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046B27CE-F282-4277-B36D-CEA947A9A70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046B27CE-F282-4277-B36D-CEA947A9A70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046B27CE-F282-4277-B36D-CEA947A9A70F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

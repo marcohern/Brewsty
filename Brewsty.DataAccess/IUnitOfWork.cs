@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Brewsty.DataAccess
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IBeerRepository Beers { get; }
 

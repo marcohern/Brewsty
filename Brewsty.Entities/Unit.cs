@@ -2,16 +2,16 @@
 {
     public enum Unit
     {
-        Unknown,
+        unknown,
 
-        Grams,
-        Kilograms,
+        grams,
+        kilograms,
 
-        Liters,
-        Inches,
-        Feet,
+        litres,
+        inches,
+        feet,
 
-        Celcius,
-        Fahrenheit
+        celsius,
+        fahrenheit
     }
 }
