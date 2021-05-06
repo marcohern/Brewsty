@@ -9,6 +9,9 @@
 
         Liters,
         Inches,
-        Feet
+        Feet,
+
+        Celcius,
+        Fahrenheit
     }
 }

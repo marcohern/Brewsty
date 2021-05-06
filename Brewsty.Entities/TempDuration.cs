@@ -7,7 +7,9 @@ namespace Brewsty.Entities
 {
     public class TempDuration : Entity
     {
-        public UnitValue Temp { get; set; }
+        public string MethodId { get; set; }
+        public float TempValue { get; set; }
+        public Unit TempUnit { get; set; }
         public float Duration { get; set; }
     }
 }

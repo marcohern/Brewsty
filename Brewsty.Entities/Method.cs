@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Brewsty.Entities
 {
-    public class Method
+    public class Method: Entity
     {
-        public int Id { get; set; }
+        public string BeerId { get; set; }
         public List<TempDuration> MashTemp { get; set; }
         public Fermentation Fermentation { get; set; }
         public string Twist { get; set; }

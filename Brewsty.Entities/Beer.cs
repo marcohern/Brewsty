@@ -19,8 +19,10 @@ namespace Brewsty.Entities
         public float Ebc { get; set; }
         public float Ph { get; set; }
         public float AttenuationLevel { get; set; }
-        public UnitValue Volume { get; set; }
-        public UnitValue BoilVolume { get; set; }
+        public float VolumeValue { get; set; }
+        public Unit VolumeUnit { get; set; }
+        public float BoilVolumeValue { get; set; }
+        public Unit BoilVolumeUnit { get; set; }
         public Method Method { get; set; }
         public Ingredients Ingredients { get; set; }
         public List<FoodDescription> FoodPairing { get; set; }

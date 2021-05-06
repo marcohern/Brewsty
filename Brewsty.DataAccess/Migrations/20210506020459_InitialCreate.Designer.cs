@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Brewsty.DataAccess.Migrations
 {
     [DbContext(typeof(BrewstyContext))]
-    [Migration("20210505035513_InitialCreate")]
+    [Migration("20210506020459_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +21,9 @@ namespace Brewsty.DataAccess.Migrations
 
             modelBuilder.Entity("Brewsty.Entities.Beer", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
 
                     b.Property<float>("Abv")
                         .HasColumnType("float");
@@ -31,8 +31,11 @@ namespace Brewsty.DataAccess.Migrations
                     b.Property<float>("AttenuationLevel")
                         .HasColumnType("float");
 
-                    b.Property<int?>("BoilVolumeId")
+                    b.Property<int>("BoilVolumeUnit")
                         .HasColumnType("int");
+
+                    b.Property<float>("BoilVolumeValue")
+                        .HasColumnType("float");
 
                     b.Property<string>("BrewerTips")
                         .HasColumnType("text");
@@ -55,11 +58,8 @@ namespace Brewsty.DataAccess.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text");
 
-                    b.Property<int?>("IngredientsId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MethodId")
-                        .HasColumnType("int");
+                    b.Property<string>("IngredientsId")
+                        .HasColumnType("varchar(150)");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -76,46 +76,83 @@ namespace Brewsty.DataAccess.Migrations
                     b.Property<float>("TargetOG")
                         .HasColumnType("float");
 
-                    b.Property<int?>("VolumeId")
+                    b.Property<int>("VolumeUnit")
                         .HasColumnType("int");
+
+                    b.Property<float>("VolumeValue")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BoilVolumeId");
-
                     b.HasIndex("IngredientsId");
 
-                    b.HasIndex("MethodId");
-
-                    b.HasIndex("VolumeId");
-
                     b.ToTable("Beers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "cb762cd6-c0dd-4fc5-9144-d56422fce527",
+                            Abv = 0f,
+                            AttenuationLevel = 0f,
+                            BoilVolumeUnit = 3,
+                            BoilVolumeValue = 0f,
+                            BrewerTips = "",
+                            ContributedBy = "John Doe",
+                            Description = "",
+                            Ebc = 0f,
+                            FirstBrewed = new DateTime(2007, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Ibu = 0f,
+                            ImageUrl = "",
+                            Name = "Aguila",
+                            Ph = 0f,
+                            Tagline = "",
+                            TargetFG = 0f,
+                            TargetOG = 0f,
+                            VolumeUnit = 3,
+                            VolumeValue = 0f
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Fermentation", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("MethodId")
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<int>("TempUnit")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TempId")
-                        .HasColumnType("int");
+                    b.Property<float>("TempValue")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TempId");
+                    b.HasIndex("MethodId")
+                        .IsUnique();
 
                     b.ToTable("Fermentation");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "cee0f379-8395-4731-9344-ebf520f22bd7",
+                            MethodId = "69a5396f-09c5-44f6-87ad-6a84d9ee1380",
+                            TempUnit = 6,
+                            TempValue = 3f
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.FoodDescription", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
 
-                    b.Property<int?>("BeerId")
-                        .HasColumnType("int");
+                    b.Property<string>("BeerId")
+                        .HasColumnType("varchar(150)");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -125,13 +162,21 @@ namespace Brewsty.DataAccess.Migrations
                     b.HasIndex("BeerId");
 
                     b.ToTable("FoodDescription");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "9a466668-0810-4508-91ff-ba577e98553b",
+                            BeerId = "cb762cd6-c0dd-4fc5-9144-d56422fce527",
+                            Description = "Lorem ipsum Dolor Sit Amet"
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Ingredients", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
 
                     b.Property<string>("Yeast")
                         .HasColumnType("text");
@@ -139,96 +184,120 @@ namespace Brewsty.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ingredients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "e06a5498-a6f8-4f80-8948-54633cee46ed",
+                            Yeast = "Blah Blah Blah"
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Malt", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<int>("AmountUnit")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AmountId")
-                        .HasColumnType("int");
+                    b.Property<float>("AmountValue")
+                        .HasColumnType("float");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("IngredientsId")
-                        .HasColumnType("int");
+                    b.Property<string>("IngredientId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("IngredientsId")
+                        .HasColumnType("varchar(150)");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AmountId");
-
                     b.HasIndex("IngredientsId");
 
                     b.ToTable("Malt");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Malt");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "631e6f64-2942-4034-b000-300fb38916cf",
+                            AmountUnit = 1,
+                            AmountValue = 0f,
+                            IngredientId = "e06a5498-a6f8-4f80-8948-54633cee46ed",
+                            Name = "Derp"
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Method", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
 
-                    b.Property<int?>("FermentationId")
-                        .HasColumnType("int");
+                    b.Property<string>("BeerId")
+                        .HasColumnType("varchar(150)");
 
                     b.Property<string>("Twist")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FermentationId");
+                    b.HasIndex("BeerId")
+                        .IsUnique();
 
                     b.ToTable("Method");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "69a5396f-09c5-44f6-87ad-6a84d9ee1380",
+                            BeerId = "cb762cd6-c0dd-4fc5-9144-d56422fce527",
+                            Twist = "Yaddah yaddah yaddah"
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.TempDuration", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
 
                     b.Property<float>("Duration")
                         .HasColumnType("float");
 
-                    b.Property<int?>("MethodId")
+                    b.Property<string>("MethodId")
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<int>("TempUnit")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TempId")
-                        .HasColumnType("int");
+                    b.Property<float>("TempValue")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MethodId");
 
-                    b.HasIndex("TempId");
-
                     b.ToTable("TempDuration");
-                });
 
-            modelBuilder.Entity("Brewsty.Entities.UnitValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Unit")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Value")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UnitValue");
+                    b.HasData(
+                        new
+                        {
+                            Id = "4988c517-864d-4b0a-a5ab-0aac5a25cd26",
+                            Duration = 4f,
+                            MethodId = "69a5396f-09c5-44f6-87ad-6a84d9ee1380",
+                            TempUnit = 6,
+                            TempValue = 1f
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Hop", b =>
@@ -241,48 +310,40 @@ namespace Brewsty.DataAccess.Migrations
                     b.Property<string>("Attribute")
                         .HasColumnType("text");
 
-                    b.Property<int?>("IngredientsId1")
-                        .HasColumnType("int");
+                    b.Property<string>("IngredientsId1")
+                        .HasColumnType("varchar(150)");
 
                     b.HasIndex("IngredientsId1");
 
                     b.HasDiscriminator().HasValue("Hop");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "580b63e8-c3d8-4e06-80f1-1857a526fbe0",
+                            AmountUnit = 1,
+                            AmountValue = 0f,
+                            IngredientId = "e06a5498-a6f8-4f80-8948-54633cee46ed",
+                            Name = "Dorp",
+                            Add = "start",
+                            Attribute = "glitter"
+                        });
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Beer", b =>
                 {
-                    b.HasOne("Brewsty.Entities.UnitValue", "BoilVolume")
-                        .WithMany()
-                        .HasForeignKey("BoilVolumeId");
-
                     b.HasOne("Brewsty.Entities.Ingredients", "Ingredients")
                         .WithMany()
                         .HasForeignKey("IngredientsId");
 
-                    b.HasOne("Brewsty.Entities.Method", "Method")
-                        .WithMany()
-                        .HasForeignKey("MethodId");
-
-                    b.HasOne("Brewsty.Entities.UnitValue", "Volume")
-                        .WithMany()
-                        .HasForeignKey("VolumeId");
-
-                    b.Navigation("BoilVolume");
-
                     b.Navigation("Ingredients");
-
-                    b.Navigation("Method");
-
-                    b.Navigation("Volume");
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Fermentation", b =>
                 {
-                    b.HasOne("Brewsty.Entities.UnitValue", "Temp")
-                        .WithMany()
-                        .HasForeignKey("TempId");
-
-                    b.Navigation("Temp");
+                    b.HasOne("Brewsty.Entities.Method", null)
+                        .WithOne("Fermentation")
+                        .HasForeignKey("Brewsty.Entities.Fermentation", "MethodId");
                 });
 
             modelBuilder.Entity("Brewsty.Entities.FoodDescription", b =>
@@ -294,24 +355,16 @@ namespace Brewsty.DataAccess.Migrations
 
             modelBuilder.Entity("Brewsty.Entities.Malt", b =>
                 {
-                    b.HasOne("Brewsty.Entities.UnitValue", "Amount")
-                        .WithMany()
-                        .HasForeignKey("AmountId");
-
                     b.HasOne("Brewsty.Entities.Ingredients", null)
                         .WithMany("Malt")
                         .HasForeignKey("IngredientsId");
-
-                    b.Navigation("Amount");
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Method", b =>
                 {
-                    b.HasOne("Brewsty.Entities.Fermentation", "Fermentation")
-                        .WithMany()
-                        .HasForeignKey("FermentationId");
-
-                    b.Navigation("Fermentation");
+                    b.HasOne("Brewsty.Entities.Beer", null)
+                        .WithOne("Method")
+                        .HasForeignKey("Brewsty.Entities.Method", "BeerId");
                 });
 
             modelBuilder.Entity("Brewsty.Entities.TempDuration", b =>
@@ -319,12 +372,6 @@ namespace Brewsty.DataAccess.Migrations
                     b.HasOne("Brewsty.Entities.Method", null)
                         .WithMany("MashTemp")
                         .HasForeignKey("MethodId");
-
-                    b.HasOne("Brewsty.Entities.UnitValue", "Temp")
-                        .WithMany()
-                        .HasForeignKey("TempId");
-
-                    b.Navigation("Temp");
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Hop", b =>
@@ -337,6 +384,8 @@ namespace Brewsty.DataAccess.Migrations
             modelBuilder.Entity("Brewsty.Entities.Beer", b =>
                 {
                     b.Navigation("FoodPairing");
+
+                    b.Navigation("Method");
                 });
 
             modelBuilder.Entity("Brewsty.Entities.Ingredients", b =>
@@ -348,6 +397,8 @@ namespace Brewsty.DataAccess.Migrations
 
             modelBuilder.Entity("Brewsty.Entities.Method", b =>
                 {
+                    b.Navigation("Fermentation");
+
                     b.Navigation("MashTemp");
                 });
 #pragma warning restore 612, 618

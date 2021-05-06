@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MySql.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.Extensions.Logging;
 
 namespace Brewsty
@@ -37,8 +37,7 @@ namespace Brewsty
             string conString = builder.Build().GetConnectionString("DefaultConnection");
             
             services.AddDbContext<BrewstyContext>(options => {
-                options.UseMySQL(conString);
-
+                options.UseMySQL(conString).EnableDetailedErrors(true);
             });
 
         }

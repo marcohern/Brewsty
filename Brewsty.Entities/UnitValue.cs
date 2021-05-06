@@ -9,11 +9,5 @@ namespace Brewsty.Entities
     {
         public Unit Unit { get; set; }
         public float Value { get; set; }
-
-        public UnitValue(float value, Unit unit)
-        {
-            this.Value = value;
-            this.Unit = unit;
-        }
     }
 }
