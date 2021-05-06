@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Brewsty.PunkAPI\Brewsty.PunkAPI.csproj" />
     <ProjectReference Include="..\Brewsty.DataAccess\Brewsty.DataAccess.csproj" />
     <ProjectReference Include="..\Brewsty.Entities\Brewsty.Entities.csproj" />
   </ItemGroup>

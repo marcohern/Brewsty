@@ -1,4 +1,5 @@
-﻿using Brewsty.PunkAPI;
+﻿using Brewsty.Bll;
+using Brewsty.PunkAPI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,35 +14,44 @@ namespace Brewsty.Controllers
     [ApiController]
     public class BrewstyController : ControllerBase
     {
-        IPunkAPI api;
+        //private IPunkAPI _api;
+        private IBrewstyService _service;
         
-        public BrewstyController(IPunkAPI api)
+        public BrewstyController(IBrewstyService service)
         {
-            this.api = api;
+            //this._api = api;
+            this._service = service;
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<Beer> GetBeer(int id)
-        {
-            return await api.Get(id);
-        }
+        //[HttpGet]
+        //[Route("{id}")]
+        //public async Task<Beer> GetBeer(int id)
+        //{
+        //    return await _api.Get(id);
+        //}
+
+        //[HttpGet]
+        //[Route("importt/{id}")]
+        //public async Task<Entities.Beer> ImportBeer(int id)
+        //{
+        //    BeerCastOptions options = BeerCastOptions.FromQueryString(Request.QueryString.Value);
+        //    var beer = (await _api.Get(id)).ToEntity(options);
+        //    return beer;
+        //}
+
         [HttpGet]
         [Route("import/{id}")]
-        public async Task<Entities.Beer> ImportBeer(int id)
+        public async Task<Entities.Beer> ImportAndSaveBeer(int id)
         {
             BeerCastOptions options = BeerCastOptions.FromQueryString(Request.QueryString.Value);
-            var punkyBeer = await api.Get(id);
-            var beer = Beer.FromPunky(punkyBeer, options);
-
-            return beer;
+            return await this._service.ImportFromPunkAPI(id, options);
         }
 
-        [HttpGet]
-        [Route("find")]
-        public async Task<List<Beer>> FindBeer()
-        {
-            return await api.Query(new Query { beer_name = "Brew" });
-        }
+        //[HttpGet]
+        //[Route("find")]
+        //public async Task<List<Beer>> FindBeer()
+        //{
+        //    return await _api.Query(new Query { beer_name = "Brew" });
+        //}
     }
 }

@@ -11,6 +11,7 @@ namespace Brewsty.DataAccess
         public BrewstyUnitOfWork(IBrewstyContext context)
         {
             this._context = context;
+            this.Beers = new BeerRepository(context);
         }
 
         public IBeerRepository Beers { get; private set; }

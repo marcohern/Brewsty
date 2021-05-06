@@ -9,6 +9,5 @@ namespace Brewsty.DataAccess
         IBeerRepository Beers { get; }
 
         int Complete();
-        void Dispose();
     }
 }

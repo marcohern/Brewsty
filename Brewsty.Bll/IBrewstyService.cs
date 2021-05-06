@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Brewsty.Bll
 {
@@ -9,6 +10,6 @@ namespace Brewsty.Bll
     {
         void Create(Beer beer);
 
-        void ImportFromPunkAPI(int id);
+        Task<Beer> ImportFromPunkAPI(int id, PunkAPI.BeerCastOptions options);
     }
 }

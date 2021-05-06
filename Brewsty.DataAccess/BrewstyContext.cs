@@ -74,5 +74,21 @@ namespace Brewsty.DataAccess
             modelBuilder.Entity<TempDuration>().HasData(tempDuration);
             modelBuilder.Entity<Fermentation>().HasData(fermentation);
         }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
+        public override int SaveChanges()
+        {
+            this.OnSaveChanges();
+            return base.SaveChanges();
+        }
+
+        private void OnSaveChanges()
+        {
+            
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Brewsty.DataAccess
 {
     public interface IBrewstyContext
     {
-        DbSet<Beer> Beers { get; set; }
+        DbSet<Beer> Beers { get; }
 
         int SaveChanges();
         void Dispose();
